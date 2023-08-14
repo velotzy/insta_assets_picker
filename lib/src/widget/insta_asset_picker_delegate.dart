@@ -126,8 +126,14 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
 
   void openCamera(context) async {
     debugPrint('open camera');
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
-    onCameraComplete(photo);
+    try {
+      final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+      onCameraComplete(photo);
+    } catch (e) {
+      
+    }
+    
+    
     Navigator.of(context).maybePop(provider.selectedAssets);
   }
 
