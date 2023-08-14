@@ -146,16 +146,16 @@ class InstaAssetPicker {
     final text = textDelegate ?? assetPickerTextDelegateFromLocale(locale);
 
     PermissionState? ps;
-    if (builder == null) {
+    
       try {
         ps = await _permissionCheck();
       } catch (e) {
         _openErrorPermission(context, text, onPermissionDenied);
       }
-    }
+    
 
     builder ??= InstaAssetPickerBuilder(
-      initialPermission: ps ?? PermissionState.denied,
+      initialPermission: ps,
       provider: provider,
       title: title,
       gridCount: gridCount,
