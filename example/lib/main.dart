@@ -58,7 +58,7 @@ class _PickerScreenState extends State<PickerScreen> {
       closeOnComplete: true,
       provider: _provider,
       pickerTheme: _pickerTheme,
-      onCameraPress: (p0) {
+      onCameraComplete: (p0) {
         
       },
       onCompleted: (cropStream) {
@@ -116,7 +116,7 @@ class _PickerScreenState extends State<PickerScreen> {
                           title: 'Select images',
                           maxAssets: 10,
                           pickerTheme: _pickerTheme,
-                          onCameraPress: (p0){},
+                          onCameraComplete: (p0){},
                           onCompleted: (cropStream) {
                             Navigator.push(
                               context,

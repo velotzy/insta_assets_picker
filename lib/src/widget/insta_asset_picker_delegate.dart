@@ -31,7 +31,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
     required super.initialPermission,
     required super.provider,
     required this.onCompleted,
-    required this.onCameraPress,
+    required this.onCameraComplete,
     super.gridCount = 4,
     super.pickerTheme,
     super.textDelegate,
@@ -54,7 +54,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
 
   final Function(Stream<InstaAssetsExportDetails>) onCompleted;
 
-  final Function(dynamic) onCameraPress;
+  final Function(dynamic) onCameraComplete;
 
   /// Should the picker be closed when the selection is confirmed
   ///
@@ -124,10 +124,11 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
 
   final ImagePicker picker = ImagePicker();
 
-  void openCamera() async {
+  void openCamera(context) async {
     debugPrint('open camera');
-    onCameraPress('');
-
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+    onCameraComplete(photo);
+    Navigator.of(context).maybePop(provider.selectedAssets);
   }
 
   /// Initialize [previewAsset] with [p.selectedAssets] if not empty
@@ -506,7 +507,9 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                                     ),
                                   ),
                                   CircleIconButton(
-                                    onTap: openCamera,
+                                    onTap: () {
+                                          openCamera(context);
+                                        },
                                     theme: pickerTheme,
                                     icon: const Icon(
                                       Icons.camera_alt_rounded,

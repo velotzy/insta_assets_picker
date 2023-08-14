@@ -8,7 +8,7 @@ class CircleIconButton extends StatelessWidget {
     required this.theme,
   });
 
-  final VoidCallback onTap;
+  final dynamic onTap;
   final Widget icon;
   final ThemeData? theme;
 
