@@ -302,7 +302,7 @@ class InstaAssetPicker {
     );
 
     final InstaAssetPickerBuilder builder = InstaAssetPickerBuilder(
-      initialPermission: ps,
+      initialPermission: ps ?? PermissionState.denied,
       provider: provider,
       title: title,
       gridCount: gridCount,
