@@ -133,6 +133,8 @@ class InstaAssetPicker {
     bool closeOnComplete = false,
     required Function(Stream<InstaAssetsExportDetails> exportDetails)
         onCompleted,
+        required Function(dynamic)
+        onCameraPress,
     Widget Function(BuildContext, bool)? loadingIndicatorBuilder,
     Widget? Function(BuildContext, AssetPathEntity?, int)? specialItemBuilder,
     SpecialItemPosition? specialItemPosition,
@@ -163,6 +165,7 @@ class InstaAssetPicker {
       textDelegate: text,
       loadingIndicatorBuilder: loadingIndicatorBuilder,
       closeOnComplete: closeOnComplete,
+      onCameraPress: onCameraPress,
       cropDelegate: cropDelegate,
       onCompleted: onCompleted,
       specialItemBuilder: specialItemBuilder,
@@ -257,6 +260,8 @@ class InstaAssetPicker {
     bool closeOnComplete = false,
     required Function(Stream<InstaAssetsExportDetails> exportDetails)
         onCompleted,
+        required Function(dynamic)
+        onCameraPress,
     Widget Function(BuildContext, bool)? loadingIndicatorBuilder,
 
     /// DefaultAssetPickerProvider options
@@ -309,6 +314,7 @@ class InstaAssetPicker {
       closeOnComplete: closeOnComplete,
       cropDelegate: cropDelegate,
       onCompleted: onCompleted,
+      onCameraPress: onCameraPress,
       specialItemBuilder: specialItemBuilder,
       specialItemPosition: specialItemPosition,
     );

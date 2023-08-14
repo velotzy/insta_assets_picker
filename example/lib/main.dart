@@ -58,6 +58,9 @@ class _PickerScreenState extends State<PickerScreen> {
       closeOnComplete: true,
       provider: _provider,
       pickerTheme: _pickerTheme,
+      onCameraPress: (p0) {
+        
+      },
       onCompleted: (cropStream) {
         // example withtout StreamBuilder
         cropStream.listen((event) {
@@ -113,6 +116,7 @@ class _PickerScreenState extends State<PickerScreen> {
                           title: 'Select images',
                           maxAssets: 10,
                           pickerTheme: _pickerTheme,
+                          onCameraPress: (p0){},
                           onCompleted: (cropStream) {
                             Navigator.push(
                               context,

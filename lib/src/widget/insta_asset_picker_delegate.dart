@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:insta_assets_picker/insta_assets_picker.dart';
 import 'package:insta_assets_picker/src/insta_assets_crop_controller.dart';
 import 'package:insta_assets_picker/src/widget/circle_icon_button.dart';
@@ -30,6 +31,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
     required super.initialPermission,
     required super.provider,
     required this.onCompleted,
+    required this.onCameraPress,
     super.gridCount = 4,
     super.pickerTheme,
     super.textDelegate,
@@ -51,6 +53,8 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
   final String? title;
 
   final Function(Stream<InstaAssetsExportDetails>) onCompleted;
+
+  final Function(dynamic) onCameraPress;
 
   /// Should the picker be closed when the selection is confirmed
   ///
@@ -116,6 +120,14 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
   void unSelectAll() {
     provider.selectedAssets = [];
     _cropController.clear();
+  }
+
+  final ImagePicker picker = ImagePicker();
+
+  void openCamera() async {
+    debugPrint('open camera');
+    onCameraPress('');
+
   }
 
   /// Initialize [previewAsset] with [p.selectedAssets] if not empty
@@ -484,6 +496,7 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   pathEntitySelector(context),
+                                  Row(children: [
                                   CircleIconButton(
                                     onTap: unSelectAll,
                                     theme: pickerTheme,
@@ -492,6 +505,15 @@ class InstaAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
                                       size: 18,
                                     ),
                                   ),
+                                  CircleIconButton(
+                                    onTap: openCamera,
+                                    theme: pickerTheme,
+                                    icon: const Icon(
+                                      Icons.camera_alt_rounded,
+                                      size: 18,
+                                    ),
+                                  ),
+                                  ],)
                                 ],
                               ),
                             ),
